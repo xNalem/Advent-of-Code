@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
-import java.util.stream.Stream;
+import java.util.Collections;
 
 public class DayOne { 
 	
@@ -21,42 +19,27 @@ public class DayOne {
 		InputStream inputStream =  cl.getResourceAsStream("dayOne.txt");
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-
 		String line = br.readLine();
 		Integer calories = 0;
+		ArrayList<Integer> values = new ArrayList<>();
 		while(line != null) {
 			if(!line.equals("")) {
 				calories = calories + Integer.valueOf(line);
 			} else {
-				setThreeMaxCalories(calories);
+				values.add(calories);
 				calories = 0;
 			}
 			
 			line=br.readLine();
 		}
+		Collections.sort(values,Collections.reverseOrder());
 		
-		System.out.println(maxCalories);
-		System.out.println(secondCalories);
-		System.out.println(thirdCalories);
+		System.out.println(values.get(0));
+		System.out.println(values.get(1));
+		System.out.println(values.get(2));
 		
-		System.out.println(maxCalories + secondCalories + thirdCalories);
+		System.out.println(values.get(0) + values.get(1) + values.get(2));
 	
 		br.close();
-	}
-	
-	private static void setThreeMaxCalories(Integer calo) {
-		if(maxCalories < calo) {
-			thirdCalories = secondCalories;
-			secondCalories = maxCalories;
-			maxCalories = calo;
-			
-		} else if(secondCalories < calo) {
-			thirdCalories = secondCalories;
-			secondCalories = calo;
-		} else if(thirdCalories < calo) {
-			thirdCalories = calo;
-		}
-	
-
 	}
 }
