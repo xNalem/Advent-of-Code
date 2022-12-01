@@ -9,11 +9,6 @@ import java.util.Collections;
 
 public class DayOne { 
 	
-	static Integer maxCalories = 0;
-	static Integer secondCalories = 0;
-	static Integer thirdCalories = 0;
-	
-
 	public static void main(String[] args) throws IOException {
 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
 		InputStream inputStream =  cl.getResourceAsStream("dayOne.txt");
@@ -33,11 +28,9 @@ public class DayOne {
 			line=br.readLine();
 		}
 		Collections.sort(values,Collections.reverseOrder());
-		
 		System.out.println(values.get(0));
 		System.out.println(values.get(1));
 		System.out.println(values.get(2));
-		
 		System.out.println(values.get(0) + values.get(1) + values.get(2));
 	
 		br.close();
